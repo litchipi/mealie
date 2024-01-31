@@ -1,13 +1,13 @@
 from pydantic import validator
-from pydantic.types import NoneStr, constr
+from pydantic.types import constr
 
 from mealie.schema._mealie import MealieModel
 from mealie.schema._mealie.validators import validate_locale
 
 
 class CreateUserRegistration(MealieModel):
-    group: NoneStr = None
-    group_token: NoneStr = None
+    group: None | str = None
+    group_token: None | str = None
     email: constr(to_lower=True, strip_whitespace=True)  # type: ignore
     username: constr(to_lower=True, strip_whitespace=True)  # type: ignore
     password: str

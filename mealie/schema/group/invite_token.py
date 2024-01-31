@@ -1,7 +1,5 @@
 from uuid import UUID
 
-from pydantic import NoneStr
-
 from mealie.schema._mealie import MealieModel
 
 
@@ -31,4 +29,4 @@ class EmailInvitation(MealieModel):
 
 class EmailInitationResponse(MealieModel):
     success: bool
-    error: NoneStr = None
+    error: None | str = None
