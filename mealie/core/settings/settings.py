@@ -101,12 +101,12 @@ class AppSettings(BaseSettings):
     # ===============================================
     # Email Configuration
 
-    SMTP_HOST: str | None
+    SMTP_HOST: str | None = None
     SMTP_PORT: str | None = "587"
     SMTP_FROM_NAME: str | None = "Mealie"
-    SMTP_FROM_EMAIL: str | None
-    SMTP_USER: str | None
-    SMTP_PASSWORD: str | None
+    SMTP_FROM_EMAIL: str | None = None
+    SMTP_USER: str | None = None
+    SMTP_PASSWORD: str | None = None
     SMTP_AUTH_STRATEGY: str | None = "TLS"  # Options: 'TLS', 'SSL', 'NONE'
 
     @property
