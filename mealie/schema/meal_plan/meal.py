@@ -36,7 +36,7 @@ class MealPlanIn(MealieModel):
     plan_days: list[MealDayIn]
 
     @validator("end_date")
-    def end_date_after_start_date(v, values, config, field):
+    def end_date_after_start_date(v, values):
         if "start_date" in values and v < values["start_date"]:
             raise ValueError("EndDate should be greater than StartDate")
         return v

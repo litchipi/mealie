@@ -3,8 +3,7 @@ import enum
 from uuid import UUID
 
 from isodate import parse_time
-from pydantic import UUID4, validator
-from pydantic.datetime_parse import parse_datetime
+from pydantic import UUID4, validator, TypeAdapter
 
 from mealie.schema._mealie import MealieModel
 from mealie.schema.response.pagination import PaginationBase
@@ -32,8 +31,9 @@ class CreateWebhook(MealieModel):
         type: time is treated as a UTC value
         type: datetime is treated as a value with a timezone
         """
+        parse_datetime = lambda x: TypeAdapter(datetime.datetime).validate_json(x).astimezone(datetime.timezone.utc).time()
         parser_funcs = [
-            lambda x: parse_datetime(x).astimezone(datetime.timezone.utc).time(),
+            parse_datetime,
             parse_time,
         ]
 

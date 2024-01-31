@@ -10,7 +10,6 @@ from typing import Any, TypeVar, cast, get_type_hints
 
 from fastapi import APIRouter, Depends
 from fastapi.routing import APIRoute
-from pydantic.typing import is_classvar
 from starlette.routing import Route, WebSocketRoute
 
 T = TypeVar("T")
@@ -46,7 +45,6 @@ def _cbv(router: APIRouter, cls: type[T], *urls: str, instance: Any | None = Non
     _register_endpoints(router, cls, *urls)
     return cls
 
-
 def _init_cbv(cls: type[Any], instance: Any | None = None) -> None:
     """
     Idempotently modifies the provided `cls`, performing the following modifications:
@@ -67,7 +65,7 @@ def _init_cbv(cls: type[Any], instance: Any | None = None) -> None:
 
     dependency_names: list[str] = []
     for name, hint in get_type_hints(cls).items():
-        if is_classvar(hint):
+        if getattr(hint, '_name', None) == 'ClassVar':
             continue
 
         if name.startswith("_"):

@@ -34,7 +34,7 @@ def default_group_init(db: AllRepositories):
 
     logger.info("Generating Default Group")
 
-    GroupService.create_group(db, GroupBase(name=settings.DEFAULT_GROUP))
+    GroupService.create_group(db, GroupBase(name=settings.DEFAULT_GROUP, groupId=0))
 
 
 # Adapted from https://alembic.sqlalchemy.org/en/latest/cookbook.html#test-current-database-revision-is-at-head-s
