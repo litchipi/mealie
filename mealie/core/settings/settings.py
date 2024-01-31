@@ -1,7 +1,8 @@
 import secrets
 from pathlib import Path
 
-from pydantic import BaseSettings, NoneStr, validator
+from pydantic import validator
+from pydantic_settings import BaseSettings
 
 from mealie.core.settings.themes import Theme
 
@@ -143,15 +144,15 @@ class AppSettings(BaseSettings):
     # LDAP Configuration
 
     LDAP_AUTH_ENABLED: bool = False
-    LDAP_SERVER_URL: NoneStr = None
+    LDAP_SERVER_URL: None | str = None
     LDAP_TLS_INSECURE: bool = False
-    LDAP_TLS_CACERTFILE: NoneStr = None
+    LDAP_TLS_CACERTFILE: None | str = None
     LDAP_ENABLE_STARTTLS: bool = False
-    LDAP_BASE_DN: NoneStr = None
-    LDAP_QUERY_BIND: NoneStr = None
-    LDAP_QUERY_PASSWORD: NoneStr = None
-    LDAP_USER_FILTER: NoneStr = None
-    LDAP_ADMIN_FILTER: NoneStr = None
+    LDAP_BASE_DN: None | str = None
+    LDAP_QUERY_BIND: None | str = None
+    LDAP_QUERY_PASSWORD: None | str = None
+    LDAP_USER_FILTER: None | str = None
+    LDAP_ADMIN_FILTER: None | str = None
     LDAP_ID_ATTRIBUTE: str = "uid"
     LDAP_MAIL_ATTRIBUTE: str = "mail"
     LDAP_NAME_ATTRIBUTE: str = "name"
